@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 export class CustomerService {
   create(customer) {
     console.log('create successfully with:', customer);
+    return customer;
   }
 
   findOne(): any {

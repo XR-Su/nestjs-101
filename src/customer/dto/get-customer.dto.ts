@@ -1,7 +1,7 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 
 @Exclude()
-export class CustomerDto {
+export class GetCustomerDto {
   @Expose() name: string;
   @Expose() isActive: boolean;
 

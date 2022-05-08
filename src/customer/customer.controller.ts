@@ -1,20 +1,31 @@
 import {
+  Body,
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Post,
   UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { CustomerDto } from './dto/customer.dto';
+import { GetCustomerDto } from './dto/get-customer.dto';
+import { CreateCustomerDto } from './dto/create-customer.dto';
 
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
+@UsePipes(new ValidationPipe())
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
+
+  @Post()
+  create(@Body() customer: CreateCustomerDto): any {
+    return this.customerService.create(customer);
+  }
 
   @Get()
   findOne(): any {
     const customer = this.customerService.findOne();
-    return new CustomerDto(customer);
+    return new GetCustomerDto(customer);
   }
 }

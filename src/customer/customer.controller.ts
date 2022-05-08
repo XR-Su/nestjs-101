@@ -3,6 +3,7 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Param,
   Post,
   UseInterceptors,
   UsePipes,
@@ -14,7 +15,11 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
-@UsePipes(new ValidationPipe())
+@UsePipes(
+  new ValidationPipe({
+    transform: true,
+  }),
+)
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 

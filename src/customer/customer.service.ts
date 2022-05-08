@@ -8,14 +8,6 @@ export class CustomerService {
       name: 'jack',
       meta: 'dec',
       isActive: false,
-      transactions: [
-        {
-          orderId: '1',
-          productName: 'macbookpro2021',
-          type: 'wx',
-          dateTime: '2022-02-22',
-        },
-      ],
     };
   }
 }

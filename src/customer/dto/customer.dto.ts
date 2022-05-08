@@ -5,7 +5,7 @@ export class CustomerEntity {
   @Expose() name: string;
   @Expose() isActive: boolean;
 
-  constructor(rule?: Partial<any>) {
-    Object.assign(this, rule);
+  constructor(customer?: Partial<any>) {
+    Object.assign(this, customer);
   }
 }

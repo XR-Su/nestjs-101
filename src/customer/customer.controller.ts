@@ -5,18 +5,16 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { CustomerDto } from './dto/customer.dto';
-import { ControllerSerializer } from '../decorators/controllerSerializer';
+import { CustomerEntity } from './dto/customer.dto';
 
 @Controller('customer')
+@UseInterceptors(ClassSerializerInterceptor)
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Get()
-  // @ControllerSerializer()
-  @UseInterceptors(ClassSerializerInterceptor)
   findOne(): any {
     const customer = this.customerService.findOne();
-    return new CustomerDto(customer);
+    return new CustomerEntity(customer);
   }
 }

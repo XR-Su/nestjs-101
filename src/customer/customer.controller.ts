@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  UseFilters,
   UseInterceptors,
   UsePipes,
   ValidationPipe,

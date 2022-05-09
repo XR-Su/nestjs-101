@@ -15,7 +15,7 @@ export type CommonExceptionBody = {
   details?: string | Array<string>;
 };
 
-@Catch(CommonException, HttpException)
+@Catch(HttpException)
 @Injectable()
 export class CommonHttpExceptionFilter implements ExceptionFilter {
   catch(exception: CommonException | HttpException, host: ArgumentsHost) {

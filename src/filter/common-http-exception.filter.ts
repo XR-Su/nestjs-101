@@ -10,11 +10,12 @@ import { Response } from 'express';
 import { CommonException } from '../exception/common.exception';
 
 export type CommonExceptionBody = {
+  status_code: HttpStatus;
   error_message: string;
   details?: string | Array<string>;
 };
 
-@Catch(CommonException)
+@Catch(CommonException, HttpException)
 @Injectable()
 export class CommonHttpExceptionFilter implements ExceptionFilter {
   catch(exception: CommonException | HttpException, host: ArgumentsHost) {
@@ -28,6 +29,7 @@ export class CommonHttpExceptionFilter implements ExceptionFilter {
     }
 
     return response.status(exception.getStatus()).json({
+      status_code: exception.getStatus(),
       error_message: 'Internal server error: Something went wrong',
       details: exception.message,
     });
@@ -35,7 +37,8 @@ export class CommonHttpExceptionFilter implements ExceptionFilter {
 
   private getResponseBody(exception: CommonException) {
     const body: CommonExceptionBody = {
-      error_message: exception.getErrorMessage(),
+      status_code: exception.getStatus(),
+      error_message: exception.message,
     };
 
     return body;

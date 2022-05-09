@@ -13,6 +13,8 @@ import {
 import { CustomerService } from './customer.service';
 import { GetCustomerDto } from './dto/get-customer.dto';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { CustomerException } from '../exception/customer.exception';
+import { CommonHttpExceptionFilter } from '../filter/common-http-exception.filter';
 
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -21,6 +23,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
     transform: true,
   }),
 )
+@UseFilters(CommonHttpExceptionFilter)
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
@@ -31,6 +34,7 @@ export class CustomerController {
 
   @Get()
   findOne(): any {
+    throw new CustomerException();
     const customer = this.customerService.findOne();
     return new GetCustomerDto(customer);
   }

@@ -3,11 +3,6 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  NotFoundException,
-  Param,
   Post,
   UseFilters,
   UseInterceptors,
@@ -15,11 +10,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { GetCustomerDto } from './dto/get-customer.dto';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { CustomerException } from '../exception/customer.exception';
 import { CommonHttpExceptionFilter } from '../filter/common-http-exception.filter';
-import { CommonException } from '../exception/common.exception';
 import { TransformInterceptor } from '../interceptor/transform.interceptor';
 import { ParseParameterPipe } from '../pipe/parse-parameter.pipe';
 
@@ -43,9 +35,7 @@ export class CustomerController {
 
   @Get()
   findOne(): any {
-    // throw new HttpException('findOne error', HttpStatus.BAD_REQUEST);
-    throw new CustomerException();
     const customer = this.customerService.findOne();
-    return new GetCustomerDto(customer);
+    return customer;
   }
 }

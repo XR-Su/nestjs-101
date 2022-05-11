@@ -20,7 +20,8 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { CustomerException } from '../exception/customer.exception';
 import { CommonHttpExceptionFilter } from '../filter/common-http-exception.filter';
 import { CommonException } from '../exception/common.exception';
-import {TransformInterceptor} from "../interceptor/transform.interceptor";
+import { TransformInterceptor } from '../interceptor/transform.interceptor';
+import { ParseParameterPipe } from '../pipe/parse-parameter.pipe';
 
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -31,6 +32,7 @@ import {TransformInterceptor} from "../interceptor/transform.interceptor";
 )
 @UseFilters(CommonHttpExceptionFilter)
 @UseInterceptors(TransformInterceptor)
+@UsePipes(ParseParameterPipe)
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 

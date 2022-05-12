@@ -9,7 +9,6 @@ import {
 export class ParseParameterPipe implements PipeTransform<string> {
   async transform(value: string, metadata: ArgumentMetadata) {
     console.log('pipe', value);
-    console.log(value);
     return value;
   }
 }

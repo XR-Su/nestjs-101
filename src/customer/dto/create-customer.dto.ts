@@ -1,11 +1,11 @@
 import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { IsRequired } from '../../validation/IsRequired';
-import { IsVerifyCustomerName } from '../../validation/IsValidCustomerName';
+import { IsValidCustomerName } from '../../validation/IsValidCustomerName';
 
 export class CreateCustomerDto {
   @IsString()
-  @IsVerifyCustomerName()
+  @IsValidCustomerName()
   @IsRequired()
   name: string;
 

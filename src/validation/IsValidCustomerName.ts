@@ -1,12 +1,12 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
 
-export function IsVerifyCustomerName(
+export function IsValidCustomerName(
   property?: string,
   validationOptions?: ValidationOptions,
 ) {
   return function (object: Record<string, any>, propertyName: string) {
     registerDecorator({
-      name: 'isVerifyInput',
+      name: 'isValidCustomerName',
       target: object.constructor,
       propertyName: propertyName,
       constraints: [property],

@@ -1,11 +1,11 @@
-import { Exclude, Expose, Transform, Type } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
 export class GetCustomerDto {
   @Expose() name: string;
   @Expose() isActive: boolean;
 
-  constructor(customer?: Partial<any>) {
-    Object.assign(this, customer);
+  constructor(data?: Partial<any>) {
+    Object.assign(this, data);
   }
 }

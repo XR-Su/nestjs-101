@@ -12,6 +12,7 @@ import {
 import { CustomerService } from './customer.service';
 import { GetCustomerDto } from './dto/get-customer.dto';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
